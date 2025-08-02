@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MvF Hull Food Diary</title>
+  <script defer src="app.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-4">
+  <div class="max-w-4xl mx-auto bg-white shadow-md rounded p-4">
+    <h1 class="text-2xl font-bold mb-4">MvF Hull Food Diary</h1>
+
+    <form id="food-diary-form" class="grid grid-cols-1 gap-4">
+      <label class="block">
+        Select Day:
+        <select id="day" class="border p-2 w-full">
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+          <option>Sunday</option>
+        </select>
+      </label>
+
+      <label class="block">
+        Breakfast:
+        <input type="text" id="breakfast" class="border p-2 w-full" />
+      </label>
+      <label class="block">
+        Dinner:
+        <input type="text" id="dinner" class="border p-2 w-full" />
+      </label>
+      <label class="block">
+        Tea:
+        <input type="text" id="tea" class="border p-2 w-full" />
+      </label>
+
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save Entry</button>
+    </form>
+
+    <div class="mt-8">
+      <h2 class="text-xl font-bold">Weight Tracker</h2>
+      <canvas id="weightChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="mt-8">
+      <h2 class="text-xl font-bold">League Table</h2>
+      <ul id="league-table" class="list-disc pl-6">
+        <li>1. The Reds - 0 pts</li>
+        <li>2. The Blues - 0 pts</li>
+        <li>3. The Greens - 0 pts</li>
+        <li>4. The Yellows - 0 pts</li>
+        <li>5. The Purples - 0 pts</li>
+        <li>6. The Whites - 0 pts</li>
+        <li>7. The Blacks - 0 pts</li>
+        <li>8. The Oranges - 0 pts</li>
+      </ul>
+    </div>
+
+    <div class="mt-8">
+      <h2 class="text-xl font-bold">Top Scorers</h2>
+      <ol id="top-scorers" class="list-decimal pl-6">
+        <li>Player A - 0 goals</li>
+        <li>Player B - 0 goals</li>
+        <li>Player C - 0 goals</li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('weightChart').getContext('2d');
+    const weightChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+          label: 'Your Weight (kg)',
+          data: [90, 88, 87, 85],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+        },
+        scales: {
+          y: { beginAtZero: false }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
